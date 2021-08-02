@@ -1,0 +1,58 @@
+package designpattern.creational.factory;
+
+interface Animal {
+    void speak();
+    void preferredAction();
+}
+
+class Dog implements Animal {
+    public void speak() {
+        System.out.println("Dog says: Bow-Wow.");        
+    }
+    public void preferredAction() {
+        System.out.println("Dogs prefer barking...");        
+    }
+}
+
+class Tiger implements Animal{
+    public void speak() {
+        System.out.println("Tiger says: Halum.");
+    }
+    public void preferredAction() {
+        System.out.println("Tigers prefer hunting...");
+    }
+}
+
+abstract class AnimalFactory{
+    public abstract Animal createAnimal();
+}
+
+class DogFactory extends AnimalFactory{
+    public Animal createAnimal(){
+        return new Dog();
+    }
+}
+
+class TigerFactory extends AnimalFactory{
+    public Animal createAnimal(){
+        return new Tiger();
+    }
+}
+
+public class FactoryPattern{
+    public static void demo(){
+        System.out.println(String.format("\n%s  Factory Pattern Demo %s", "𑁋".repeat(7), "𑁋".repeat(7)));
+        AnimalFactory tigerFactory=new TigerFactory();
+        Animal aTiger =tigerFactory.createAnimal();
+        aTiger.speak();
+        aTiger.preferredAction();
+        System.out.println();
+        AnimalFactory dogFactory=new DogFactory();
+        Animal aDog = dogFactory.createAnimal();
+        aDog.speak();
+        aDog.preferredAction(); 
+        System.out.println(String.format("%s  Factory Pattern Demo %s\n", "𑁋".repeat(7), "𑁋".repeat(7)));
+    }
+}
+
+
